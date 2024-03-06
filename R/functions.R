@@ -100,3 +100,9 @@ RNG <- function(s, a=NULL){
   bottom <- sum(row_sums * log10(row_sums), na.rm = T)
   top / bottom
 }
+
+NSQ <- function(s, a=NULL){
+  a <- .manage_alternatives(a,s)
+  M <- .response_matrix(s,a, wrap = T)
+  sum(M == 0) / (length(a) ** 2 - 1)
+}
