@@ -106,3 +106,9 @@ NSQ <- function(s, a=NULL){
   M <- .response_matrix(s,a, wrap = T)
   sum(M == 0) / (length(a) ** 2 - 1)
 }
+
+adjacency <- function(s, full=F){
+  adj <- abs(s[2:length(s)] - s[1:(length(s) - 1)]) == 1
+  if (full) return(adj) else return(mean(adj, na.rm=T))
+}
+
