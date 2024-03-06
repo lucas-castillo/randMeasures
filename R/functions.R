@@ -68,7 +68,7 @@ coupon <- function(s,a=NULL){
   }
   mean(accumulator)
 }
-gap <- function(s, a=NULL){
+repetition_gap <- function(s, a=NULL){
   a <- .manage_alternatives(a,s)
   diffs <- c()
   for (alt in a){
