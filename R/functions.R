@@ -30,6 +30,23 @@ redundancy <- function(s, a=NULL){
     sum(counts * log2(counts), na.rm = T) / n
   return(1 - H_single/H_max)
 }
+
+#' Repetitions
+#'
+#' @param s Sequence vector.
+#' @param full Optional. Boolean.
+#'
+#' @return If full returns a vector of length = length(s) with whether the ith item is a repetition of the last. Otherwise returns the mean repetition rate.
+#' @export
+#'
+#' @examples
+#' s <- sample(1:10, 100, T)
+#' repetitions(s)
+#' repetitions(s, full=T)
+repetitions <- function(s, full=F){
+  v <- s[2:length(s)] == s[1:(length(s) - 1)]
+  if (full) return (c(NA, v)) else return (mean(v, na.rm=T))
+}
 response_frequencies <- function(s, a=NULL){
   a <- .manage_alternatives(a,s)
   n <- length(s)
