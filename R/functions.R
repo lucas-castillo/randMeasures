@@ -115,6 +115,13 @@ adjacency <- function(s, full=F){
   if (full) return(c(NA, adj)) else return(mean(adj, na.rm=T))
 }
 
+turning_points <- function(s, full=F){
+  one   <- s[1:(length(s) - 2)]
+  two   <- s[2:(length(s) - 1)]
+  three <- s[3:(length(s)    )]
+  tp <- (one < two & two > three) | (one > two & two < three)
+  if (full){return(c(NA, NA, na.rm=T))} else return(mean(tp, na.rm = T))
+}
 
 phase_length <- function(s){
 
