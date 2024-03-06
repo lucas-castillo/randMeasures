@@ -115,3 +115,7 @@ adjacency <- function(s, full=F){
   if (full) return(adj) else return(mean(adj, na.rm=T))
 }
 
+
+phase_length <- function(s){
+
+}
