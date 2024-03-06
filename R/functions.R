@@ -68,14 +68,23 @@ coupon <- function(s,a=NULL){
   }
   mean(accumulator)
 }
-repetition_gap <- function(s, a=NULL){
+repetition_gap <- function(s, a=NULL, measure="median"){
   a <- .manage_alternatives(a,s)
   diffs <- c()
   for (alt in a){
     diffs <- c(diffs, diff(which(s == alt)))
   }
-  return(median(diffs))
+  if (measure == "median"){
+    return(median(diffs))
+  } else if (measure == "mean"){
+    return(mean(diffs))
+  } else if (measure == "mode"){
+    as.numeric(names(which(table(diffs) == max(table(diffs)))))
+  } else if (measure == "distances"){
+    return(table(diffs, dnn = "distances"))
+  }
 }
+
 poker <- function(s,a=NULL){
   #GK94
 }
