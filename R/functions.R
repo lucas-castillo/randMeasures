@@ -76,3 +76,27 @@ gap <- function(s, a=NULL){
   }
   return(median(diffs))
 }
+.response_matrix <- function(s, a, wrap=T){
+  M <- matrix(0, length(a), length(a))
+  for (i in 2:length(s)){
+    last_index <- which(a == s[i-1])
+    this_index <- which(a == s[i])
+    M[last_index, this_index] <- M[last_index, this_index] + 1
+  }
+  if (wrap){
+    last_index <- which(a == s[i])
+    this_index <- which(a == s[1])
+    M[last_index, this_index] <- M[last_index, this_index] + 1
+  }
+  return(M)
+}
+RNG <- function(s, a=NULL){
+  # Evans' RNG. Note T+Neil has a typo here
+  a <- .manage_alternatives(a,s)
+  M <- .response_matrix(s,a, wrap = T)
+
+  row_sums <- rowSums(M)
+  top <- sum(M * log10(M), na.rm = T)
+  bottom <- sum(row_sums * log10(row_sums), na.rm = T)
+  top / bottom
+}
