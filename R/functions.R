@@ -30,3 +30,9 @@ redundancy <- function(s, a=NULL){
     sum(counts * log2(counts), na.rm = T) / n
   return(1 - H_single/H_max)
 }
+response_frequencies <- function(s, a=NULL){
+  a <- .manage_alternatives(a,s)
+  n <- length(s)
+  frequencies <- sapply(a, \(x){sum(s == x)}) / n
+  return(data.frame(alternative = a, frequency=frequencies))
+}
