@@ -130,3 +130,8 @@ phase_length <- function(s){
 runs <- function(s){
 
 }
+
+fod <- function(s, a=NULL){
+  TT <- table(diff(s))
+  data.frame(difference=as.integer(names(TT)), frequency=as.vector(TT))
+}
