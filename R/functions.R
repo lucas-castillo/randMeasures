@@ -76,6 +76,9 @@ gap <- function(s, a=NULL){
   }
   return(median(diffs))
 }
+poker <- function(s,a=NULL){
+  #GK94
+}
 .response_matrix <- function(s, a, wrap=T){
   M <- matrix(0, length(a), length(a))
   for (i in 2:length(s)){
