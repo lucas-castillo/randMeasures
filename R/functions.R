@@ -1,0 +1,32 @@
+.manage_alternatives <- function(a, s){
+  if (!is.null(a) & length(a) == 1){
+    stop("a should be a vector of alternatives, not the number of alternatives")
+  }
+  if (is.null(a)){
+    a <- min(s):max(s)
+  }
+  return(a)
+}
+
+
+#' Redundancy
+#'
+#' @param s Sequence vector.
+#' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#'
+#' @return Redundancy value from 0 to 1.
+#'
+#' @export
+#'
+#' @examples
+#' redundancy(sample(1:10, 100, T))
+redundancy <- function(s, a=NULL){
+  a <- .manage_alternatives(a, s)
+
+  n <- length(s)
+  H_max <- log2(length(a))
+  counts <- sapply(a, \(x){sum(s == x)})
+  H_single <- log2(n) -
+    sum(counts * log2(counts), na.rm = T) / n
+  return(1 - H_single/H_max)
+}
