@@ -36,3 +36,18 @@ response_frequencies <- function(s, a=NULL){
   frequencies <- sapply(a, \(x){sum(s == x)}) / n
   return(data.frame(alternative = a, frequency=frequencies))
 }
+coupon <- function(s,a=NULL){
+  # Ginsburg and Karpiuk (1994)
+  a <- .manage_alternatives(a,s)
+  n <- length(s)
+  alternatives_found <- rep(0, length(a))
+  accumulator <- c()
+  for (i in 1:length(s)){
+    alternatives_found[which(a == s[i])] <- alternatives_found[which(a == s[i])] + 1
+    if (!any(alternatives_found == 0)){
+      accumulator <- c(accumulator, sum(alternatives_found))
+      alternatives_found <- rep(0, length(a))
+    }
+  }
+  mean(accumulator)
+}
