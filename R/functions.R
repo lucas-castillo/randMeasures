@@ -112,7 +112,7 @@ NSQ <- function(s, a=NULL){
 
 adjacency <- function(s, full=F){
   adj <- abs(s[2:length(s)] - s[1:(length(s) - 1)]) == 1
-  if (full) return(adj) else return(mean(adj, na.rm=T))
+  if (full) return(c(NA, adj)) else return(mean(adj, na.rm=T))
 }
 
 
