@@ -2,7 +2,7 @@ Package: randMeasures
 Title: Tools for analysis of human random sequence generation. 
 Version: 0.0.0.9000
 Authors@R: 
-    person("Lucas", "Castillo", "lucas.castillo.marti@gmail.com", role = c("aut", "cre"),
+    person("Lucas", "Castillo",, "lucas.castillo.marti@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0274-0777"))
 Description: This package provides a series of measures employed in the random generation literature to evaluate people's sequences.
 License: CC BY 4.0
