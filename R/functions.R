@@ -119,9 +119,30 @@ NSQ <- function(s, a=NULL){
   sum(M == 0) / (length(a) ** 2 - 1)
 }
 
-adjacency <- function(s, full=F){
-  adj <- abs(s[2:length(s)] - s[1:(length(s) - 1)]) == 1
-  if (full) return(c(NA, adj)) else return(mean(adj, na.rm=T))
+adjacency <- function(s, full=F, unpack=F){
+  # note that t&n use count / n, not count / (n-1)
+  diffs <- diff(s)
+  descending <- diffs == -1
+  ascending <- diffs == 1
+  combined <- ascending | descending
+
+  if (full & unpack){
+    return(data.frame(
+      descending = c(NA, descending),
+      ascending = c(NA, ascending),
+      combined = c(NA, combined)
+    ))
+  } else if (full){
+    return(c(NA, combined))
+  } else if (unpack){
+    return(list(
+      "descending" = mean(descending, na.rm=T),
+      "ascending" = mean(ascending, na.rm=T),
+      "combined" = mean(combined, na.rm=T)
+    ))
+  } else{
+    return(mean(combined, na.rm=T))
+  }
 }
 
 turning_points <- function(s, full=F){
