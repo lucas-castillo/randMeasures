@@ -119,3 +119,7 @@ adjacency <- function(s, full=F){
 phase_length <- function(s){
 
 }
+
+runs <- function(s){
+
+}
