@@ -158,7 +158,37 @@ phase_length <- function(s){
 }
 
 runs <- function(s){
+  ended <- F
+  i <- 2
+  k <- 1
+  run_counter <- c()
+  trend <- s[2] - s[1]
+  while (!ended){
+    if (trend > 0){
+      start <- i-1
+      while(trend > 0){
+        i <- i + 1
+        if (i > length(s)) break
+        trend <- s[i] - s[i-1]
+      }
+      end <- i-1
+      run_counter <- c(run_counter, end-start+1)
+    } else if (trend <=0){
+      start <- i-1
+      while(trend <=0){
+        i <- i + 1
+        if (i > length(s)) break
+        trend <- s[i] - s[i-1]
+      }
+      end <- i-1
+    }
 
+    if (i > length(s)){
+      ended <- T
+    }
+  }
+  unaccounted_items <- length(s) - sum(run_counter)
+  return(var(c(run_counter, rep(1, unaccounted_items))))
 }
 
 fod <- function(s, a=NULL){
