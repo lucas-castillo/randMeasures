@@ -165,3 +165,20 @@ fod <- function(s, a=NULL){
   TT <- table(diff(s))
   data.frame(difference=as.integer(names(TT)), frequency=as.vector(TT))
 }
+.interleaved_digrams <- function(s, a){
+  M <- matrix(0, length(a), length(a))
+  for (i in 3:length(s)){
+    last_index <- which(a == s[i-2])
+    this_index <- which(a == s[i])
+    M[last_index, this_index] <- M[last_index, this_index] + 1
+  }
+  return(M)
+}
+RNG2 <- function(s, a=NULL){
+  a <- .manage_alternatives(a,s)
+  M <- .interleaved_digrams(s,a)
+  row_sums <- rowSums(M)
+  top <- sum(M * log10(M), na.rm = T)
+  bottom <- sum(row_sums * log10(row_sums), na.rm = T)
+  top / bottom
+}
