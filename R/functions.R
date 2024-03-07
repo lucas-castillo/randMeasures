@@ -157,6 +157,11 @@ phase_length <- function(s){
 
 }
 
+cluster_ratio <- function(s, a=NULL){
+  a <- .manage_alternatives(a,s)
+  M <- .response_matrix(s,a, wrap = T)
+  var(as.vector(M))
+}
 runs <- function(s){
   ended <- F
   i <- 2
