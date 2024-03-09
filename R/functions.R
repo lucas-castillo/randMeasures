@@ -230,3 +230,55 @@ RNG2 <- function(s, a=NULL){
   bottom <- sum(row_sums * log10(row_sums), na.rm = T)
   top / bottom
 }
+
+#' Get all measures
+#'
+#' @param s Sequence vector.
+#' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#'
+#' @return A dataframe with all measures in the package
+#' @export
+#'
+#' @examples
+#' all_measures(sample(1:5, 100, T))
+all_measures <- function(s, a=NULL){
+  a <- .manage_alternatives(a,s)
+  response_frequencies <- response_frequencies(s, a)
+  phase_length <- phase_length(s)
+  phase_length <- phase_length / sum(phase_length)
+
+  fod <- fod(s, a)
+
+
+
+  data.frame(
+    redundancy = redundancy(s, a),
+    repetitions = repetitions(s),
+    adjacency=adjacency(s),
+    turning_points=turning_points(s),
+    coupon = coupon(s, a),
+    repetition_gap_mod =repetition_gap(s,a, "mode"),
+    repetition_gap_med =repetition_gap(s,a, "median"),
+    repetition_gap_mean= repetition_gap(s,a, "mean"),
+    RNG = RNG(s,a),
+    RNG2 = RNG2(s, a),
+    NSQ = NSQ(s,a),
+    cluster_ratio = cluster_ratio(s,a),
+    phase_length_1=if ("1" %in% names(phase_length)){phase_length["1"]}else{0},
+    phase_length_2=if ("2" %in% names(phase_length)){phase_length["2"]}else{0},
+    phase_length_3=if ("3" %in% names(phase_length)){phase_length["3"]}else{0},
+    phase_length_4=if ("4" %in% names(phase_length)){phase_length["4"]}else{0},
+    phase_length_5=if ("5" %in% names(phase_length)){phase_length["5"]}else{0},
+    fod_m5 = if (-5 %in% fod$difference) {fod$frequency[fod$difference == -5]}else{0},
+    fod_m4 = if (-4 %in% fod$difference) {fod$frequency[fod$difference == -4]}else{0},
+    fod_m3 = if (-3 %in% fod$difference) {fod$frequency[fod$difference == -3]}else{0},
+    fod_m2 = if (-2 %in% fod$difference) {fod$frequency[fod$difference == -2]}else{0},
+    fod_m1 = if (-1 %in% fod$difference) {fod$frequency[fod$difference == -1]}else{0},
+    fod_0  = if ( 0 %in% fod$difference) {fod$frequency[fod$difference ==  0]}else{0},
+    fod_p1 = if (+1 %in% fod$difference) {fod$frequency[fod$difference == +1]}else{0},
+    fod_p2 = if (+2 %in% fod$difference) {fod$frequency[fod$difference == +2]}else{0},
+    fod_p3 = if (+3 %in% fod$difference) {fod$frequency[fod$difference == +3]}else{0},
+    fod_p4 = if (+4 %in% fod$difference) {fod$frequency[fod$difference == +4]}else{0},
+    fod_p5 = if (+5 %in% fod$difference) {fod$frequency[fod$difference == +5]}else{0}
+  )
+}
