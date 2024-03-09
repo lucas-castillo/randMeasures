@@ -166,7 +166,8 @@ turning_points <- function(s, full=F){
 }
 
 phase_length <- function(s){
-
+  phases <- diff(which(turning_points(s, T)))
+  table(phases)
 }
 
 cluster_ratio <- function(s, a=NULL){
