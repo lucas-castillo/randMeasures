@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of randMeasures is to …
+The goal of randMeasures is to easily compute several measures on human
+random sequence generation.
 
 ## Installation
 
