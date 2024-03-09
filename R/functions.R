@@ -66,7 +66,7 @@ coupon <- function(s,a=NULL){
       alternatives_found <- rep(0, length(a))
     }
   }
-  mean(accumulator)
+  if (is.null(accumulator)){return(NA)}else{return(mean(accumulator))}
 }
 repetition_gap <- function(s, a=NULL, measure="median"){
   a <- .manage_alternatives(a,s)
