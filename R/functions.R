@@ -152,14 +152,18 @@ turning_points <- function(s, full=F){
   zero_idx <- which(d == 0)
   d <- d[d!=0]
   tp <- abs(diff(d)) == 2
-
-  for (i in 1:length(zero_idx)){
-    if (i == 1){
-      tp2 <- append(tp, F, after=zero_idx[i]-1)
-    } else{
-      tp2 <- append(tp2, F, after=zero_idx[i]-1)
+  if (length(zero_idx) > 0){
+    for (i in 1:length(zero_idx)){
+      if (i == 1){
+        tp2 <- append(tp, F, after=zero_idx[i]-1)
+      } else{
+        tp2 <- append(tp2, F, after=zero_idx[i]-1)
+      }
     }
+  } else {
+    tp2 <- tp
   }
+
 
   if (full){return(c(NA, tp2, NA))} else return(mean(tp2, na.rm = T))
 
