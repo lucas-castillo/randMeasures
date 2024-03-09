@@ -211,7 +211,7 @@ runs <- function(s){
 
 fod <- function(s, a=NULL){
   TT <- table(diff(s))
-  data.frame(difference=as.integer(names(TT)), frequency=as.vector(TT))
+  data.frame(difference=as.integer(names(TT)), frequency=as.vector(TT) / (length(s) - 1))
 }
 .interleaved_digrams <- function(s, a){
   M <- matrix(0, length(a), length(a))
