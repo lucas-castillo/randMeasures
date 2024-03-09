@@ -261,7 +261,6 @@ all_measures <- function(s, a=NULL){
     adjacency=adjacency(s),
     turning_points=turning_points(s),
     coupon = coupon(s, a),
-    repetition_gap_mod =repetition_gap(s,a, "mode"),
     repetition_gap_med =repetition_gap(s,a, "median"),
     repetition_gap_mean= repetition_gap(s,a, "mean"),
     RNG = RNG(s,a),
