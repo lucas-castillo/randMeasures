@@ -146,11 +146,23 @@ adjacency <- function(s, full=F, unpack=F){
 }
 
 turning_points <- function(s, full=F){
-  one   <- s[1:(length(s) - 2)]
-  two   <- s[2:(length(s) - 1)]
-  three <- s[3:(length(s)    )]
-  tp <- (one < two & two > three) | (one > two & two < three)
-  if (full){return(c(NA, NA, na.rm=T))} else return(mean(tp, na.rm = T))
+  d <- diff(s)
+  d[d > 0] <- 1
+  d[d < 0] <- -1
+  zero_idx <- which(d == 0)
+  d <- d[d!=0]
+  tp <- abs(diff(d)) == 2
+
+  for (i in 1:length(zero_idx)){
+    if (i == 1){
+      tp2 <- append(tp, F, after=zero_idx[i]-1)
+    } else{
+      tp2 <- append(tp2, F, after=zero_idx[i]-1)
+    }
+  }
+
+  if (full){return(c(NA, tp2, NA))} else return(mean(tp2, na.rm = T))
+
 }
 
 phase_length <- function(s){
