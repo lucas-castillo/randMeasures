@@ -193,10 +193,27 @@ turning_points <- function(s, full=F, drop.r=NULL){
   } else {
     tp2 <- tp
   }
-
-
   if (full){return(c(NA, tp2, NA))} else return(mean(tp2, na.rm = T))
+}
+distances <- function(s, full=F, drop.r=NULL){
+  n <- length(s)
+  if (is.null(drop.r)){
+    drop.r <- T
+    message("Calculating distances after dropping repetitions")
+  }
+  if (drop.r){
+    r <- repetitions(s, T)
+    D <- abs(s[2:n] - s[1:(n-1)])
+    D[r] <- NA
+  } else{
+    D <- abs(s[2:n] - s[1:(n-1)])
+  }
 
+  if (full){
+    return(c(NA, D))
+  } else{
+    return(mean(D, na.rm = T))
+  }
 }
 
 phase_length <- function(s){
