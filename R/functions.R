@@ -122,13 +122,26 @@ NSQ <- function(s, a=NULL){
   sum(M == 0) / (length(a) ** 2 - 1)
 }
 
-adjacency <- function(s, full=F, unpack=F){
+adjacency <- function(s, full=F, unpack=F, drop.r=NULL){
+  if (is.null(drop.r)){
+    drop.r <- T
+    message("Calculating adjacency percentage after dropping repetitions")
+  }
+  if (drop.r){
+    r <- repetitions(s, T)
+  }
   # note that t&n use count / n, not count / (n-1)
   diffs <- diff(s)
   descending <- diffs == -1
   ascending <- diffs == 1
   combined <- ascending | descending
 
+  if (drop.r){
+    r <- repetitions(s, T)
+    descending[r] <- NA
+    ascending[r] <- NA
+    combined[r] <- NA
+  }
   if (full & unpack){
     return(data.frame(
       descending = c(NA, descending),
