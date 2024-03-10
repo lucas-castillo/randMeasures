@@ -161,7 +161,21 @@ adjacency <- function(s, full=F, unpack=F, drop.r=NULL){
   }
 }
 
-turning_points <- function(s, full=F){
+turning_points <- function(s, full=F, drop.r=NULL){
+  if (is.null(drop.r)){
+    drop.r <- T
+    message("Calculating turning point percentage after dropping repetitions")
+  }
+  if (drop.r){
+    n <- length(s)
+    r <- repetitions(s, T)
+    one <- s[1:(n-2)]
+    two <- s[2:(n-1)]
+    three <- s[3:(n)]
+    TP <- (one > two & two < three) | (one < two & two > three)
+    TP[r] <- NA
+    if (full){return(TP)} else{return(mean(TP, na.rm=T))}
+  }
   d <- diff(s)
   d[d > 0] <- 1
   d[d < 0] <- -1
