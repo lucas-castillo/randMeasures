@@ -200,7 +200,7 @@ turning_points <- function(s, full=F, drop.r=NULL){
 }
 
 phase_length <- function(s){
-  phases <- diff(which(turning_points(s, T)))
+  phases <- diff(which(turning_points(s, T, F)))
   table(phases)
 }
 
