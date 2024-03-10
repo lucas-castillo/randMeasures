@@ -7,7 +7,10 @@
   }
   return(a)
 }
-
+.trim <- function(s){
+  r <- repetitions(s, T)
+  s[c(T, !r[2:length(r)])]
+}
 
 #' Redundancy
 #'
