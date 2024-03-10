@@ -292,7 +292,11 @@ RNG2 <- function(s, a=NULL){
 #'
 #' @examples
 #' all_measures(sample(1:5, 100, T))
-all_measures <- function(s, a=NULL){
+all_measures <- function(s, a=NULL, drop.r=NULL){
+  if (is.null(drop.r)){
+    drop.r <- T
+    message("Calculating Adj, TPs and distances")
+  }
   a <- .manage_alternatives(a,s)
   response_frequencies <- response_frequencies(s, a)
   phase_length <- phase_length(s)
@@ -305,8 +309,9 @@ all_measures <- function(s, a=NULL){
   data.frame(
     redundancy = redundancy(s, a),
     repetitions = repetitions(s),
-    adjacency=adjacency(s),
-    turning_points=turning_points(s),
+    adjacency=adjacency(s, drop.r = drop.r),
+    turning_points=turning_points(s, drop.r = drop.r),
+    distances=distances(s, drop.r = drop.r),
     coupon = coupon(s, a),
     repetition_gap_med =repetition_gap(s,a, "median"),
     repetition_gap_mean= repetition_gap(s,a, "mean"),
