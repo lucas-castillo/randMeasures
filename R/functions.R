@@ -112,6 +112,7 @@ RNG <- function(s, a=NULL){
 
   row_sums <- rowSums(M)
   top <- sum(M * log10(M), na.rm = T)
+  if (top == 0) return(0)
   bottom <- sum(row_sums * log10(row_sums), na.rm = T)
   top / bottom
 }
@@ -278,6 +279,7 @@ RNG2 <- function(s, a=NULL){
   M <- .interleaved_digrams(s,a)
   row_sums <- rowSums(M)
   top <- sum(M * log10(M), na.rm = T)
+  if (top == 0) return(0)
   bottom <- sum(row_sums * log10(row_sums), na.rm = T)
   top / bottom
 }
