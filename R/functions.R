@@ -105,6 +105,18 @@ poker <- function(s,a=NULL){
   }
   return(M)
 }
+
+#' RNG
+#'
+#' @param s Sequence vector.
+#' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#'
+#' @return RNG value from 0 to 1.
+#'
+#' @export
+#'
+#' @examples
+#' RNG(sample(1:10, 100, T))
 RNG <- function(s, a=NULL){
   # Evans' RNG. Note T+Neil has a typo here
   a <- .manage_alternatives(a,s)
