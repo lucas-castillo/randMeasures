@@ -10,6 +10,17 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// lz76_complexity
+double lz76_complexity(NumericVector v);
+RcppExport SEXP _randMeasures_lz76_complexity(SEXP vSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type v(vSEXP);
+    rcpp_result_gen = Rcpp::wrap(lz76_complexity(v));
+    return rcpp_result_gen;
+END_RCPP
+}
 // SWLZ_lengths
 NumericVector SWLZ_lengths(NumericVector x);
 RcppExport SEXP _randMeasures_SWLZ_lengths(SEXP xSEXP) {
@@ -34,6 +45,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_randMeasures_lz76_complexity", (DL_FUNC) &_randMeasures_lz76_complexity, 1},
     {"_randMeasures_SWLZ_lengths", (DL_FUNC) &_randMeasures_SWLZ_lengths, 1},
     {"_randMeasures_SWLZ_ER", (DL_FUNC) &_randMeasures_SWLZ_ER, 1},
     {NULL, NULL, 0}
