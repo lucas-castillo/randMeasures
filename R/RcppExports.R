@@ -21,3 +21,11 @@ SWLZ_ER <- function(sequence) {
     .Call(`_randMeasures_SWLZ_ER`, sequence)
 }
 
+#' Calculate block entropy (as in randfindR package)
+#' @param x sequence
+#' @param block_size length of blocks in which the original sequence should be divided for analysis
+#' @export
+block_entropy <- function(x, block_size = 1L) {
+    .Call(`_randMeasures_block_entropy`, x, block_size)
+}
+

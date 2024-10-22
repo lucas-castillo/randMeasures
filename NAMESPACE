@@ -3,6 +3,7 @@
 export(RNG)
 export(SWLZ_ER)
 export(all_measures)
+export(block_entropy)
 export(lz76_complexity)
 export(redundancy)
 export(repetitions)

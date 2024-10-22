@@ -43,11 +43,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// block_entropy
+double block_entropy(NumericVector x, int block_size);
+RcppExport SEXP _randMeasures_block_entropy(SEXP xSEXP, SEXP block_sizeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type block_size(block_sizeSEXP);
+    rcpp_result_gen = Rcpp::wrap(block_entropy(x, block_size));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_randMeasures_lz76_complexity", (DL_FUNC) &_randMeasures_lz76_complexity, 1},
     {"_randMeasures_SWLZ_lengths", (DL_FUNC) &_randMeasures_SWLZ_lengths, 1},
     {"_randMeasures_SWLZ_ER", (DL_FUNC) &_randMeasures_SWLZ_ER, 1},
+    {"_randMeasures_block_entropy", (DL_FUNC) &_randMeasures_block_entropy, 2},
     {NULL, NULL, 0}
 };
 
