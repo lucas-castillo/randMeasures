@@ -57,7 +57,7 @@ NumericVector SWLZ_lengths(NumericVector x) {
 
 //' Calculate Lempel-Ziv entropy rate using sliding window method (Vegetabile et al., 2019)
 //'
-//' @param sequence
+//' @param sequence sequence
 //' @export
 // [[Rcpp::export]]
 double SWLZ_ER(NumericVector sequence){

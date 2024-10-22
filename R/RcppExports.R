@@ -15,7 +15,7 @@ SWLZ_lengths <- function(x) {
 
 #' Calculate Lempel-Ziv entropy rate using sliding window method (Vegetabile et al., 2019)
 #'
-#' @param sequence
+#' @param sequence sequence
 #' @export
 SWLZ_ER <- function(sequence) {
     .Call(`_randMeasures_SWLZ_ER`, sequence)

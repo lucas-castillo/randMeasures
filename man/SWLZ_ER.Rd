@@ -6,6 +6,9 @@
 \usage{
 SWLZ_ER(sequence)
 }
+\arguments{
+\item{sequence}{sequence}
+}
 \description{
 Calculate Lempel-Ziv entropy rate using sliding window method (Vegetabile et al., 2019)
 }
