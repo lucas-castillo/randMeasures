@@ -1,36 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/404.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/RNG.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/SWLZ_ER.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/all_measures.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/randMeasures-package.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/redundancy.html</loc>
-  </url>
-  <url>
-    <loc>https://lucas-castillo.github.io/randMeasures/reference/repetitions.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://lucas-castillo.github.io/randMeasures/404.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/LICENSE.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/authors.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/index.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/RNG.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/SWLZ_ER.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/all_measures.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/index.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/lz76_complexity.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/randMeasures-package.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/redundancy.html</loc></url>
+<url><loc>https://lucas-castillo.github.io/randMeasures/reference/repetitions.html</loc></url>
 </urlset>
+
