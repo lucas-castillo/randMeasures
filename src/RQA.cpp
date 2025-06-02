@@ -91,6 +91,13 @@ double get_entropy(NumericVector diagonalCounts, int lmin){
 
 
 
+//'Recurrent Quantification Analyses
+//'
+//'@param sequence sequence to analyse
+//'@param lmin minimum diagonal length for DET
+//'@param vmin minimum vertical length for LAM
+//'@return list of RQA results
+//[[Rcpp::export]]
 List RQA(NumericVector sequence, int lmin = 2, int vmin = 2) {
   // See Webber Jr. and Zbilut, 1994 for RR and DET; Marwan et al., 2002 for LAM
   // also http://www.recurrence-plot.tk/rqa.php in general

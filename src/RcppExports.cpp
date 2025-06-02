@@ -21,6 +21,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RQA
+List RQA(NumericVector sequence, int lmin, int vmin);
+RcppExport SEXP _randMeasures_RQA(SEXP sequenceSEXP, SEXP lminSEXP, SEXP vminSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type sequence(sequenceSEXP);
+    Rcpp::traits::input_parameter< int >::type lmin(lminSEXP);
+    Rcpp::traits::input_parameter< int >::type vmin(vminSEXP);
+    rcpp_result_gen = Rcpp::wrap(RQA(sequence, lmin, vmin));
+    return rcpp_result_gen;
+END_RCPP
+}
 // SWLZ_lengths
 NumericVector SWLZ_lengths(NumericVector x);
 RcppExport SEXP _randMeasures_SWLZ_lengths(SEXP xSEXP) {
@@ -58,6 +71,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_randMeasures_lz76_complexity", (DL_FUNC) &_randMeasures_lz76_complexity, 1},
+    {"_randMeasures_RQA", (DL_FUNC) &_randMeasures_RQA, 3},
     {"_randMeasures_SWLZ_lengths", (DL_FUNC) &_randMeasures_SWLZ_lengths, 1},
     {"_randMeasures_SWLZ_ER", (DL_FUNC) &_randMeasures_SWLZ_ER, 1},
     {"_randMeasures_block_entropy", (DL_FUNC) &_randMeasures_block_entropy, 2},

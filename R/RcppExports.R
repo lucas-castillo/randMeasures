@@ -9,6 +9,16 @@ lz76_complexity <- function(v) {
     .Call(`_randMeasures_lz76_complexity`, v)
 }
 
+#'Recurrent Quantification Analyses
+#'
+#'@param sequence sequence to analyse
+#'@param lmin minimum diagonal length for DET
+#'@param vmin minimum vertical length for LAM
+#'@return list of RQA results
+RQA <- function(sequence, lmin = 2L, vmin = 2L) {
+    .Call(`_randMeasures_RQA`, sequence, lmin, vmin)
+}
+
 SWLZ_lengths <- function(x) {
     .Call(`_randMeasures_SWLZ_lengths`, x)
 }
