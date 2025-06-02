@@ -15,6 +15,7 @@ lz76_complexity <- function(v) {
 #'@param lmin minimum diagonal length for DET
 #'@param vmin minimum vertical length for LAM
 #'@return list of RQA results
+#' @export
 RQA <- function(sequence, lmin = 2L, vmin = 2L) {
     .Call(`_randMeasures_RQA`, sequence, lmin, vmin)
 }

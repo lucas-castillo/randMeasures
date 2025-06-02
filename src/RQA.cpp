@@ -97,6 +97,7 @@ double get_entropy(NumericVector diagonalCounts, int lmin){
 //'@param lmin minimum diagonal length for DET
 //'@param vmin minimum vertical length for LAM
 //'@return list of RQA results
+//' @export
 //[[Rcpp::export]]
 List RQA(NumericVector sequence, int lmin = 2, int vmin = 2) {
   // See Webber Jr. and Zbilut, 1994 for RR and DET; Marwan et al., 2002 for LAM
