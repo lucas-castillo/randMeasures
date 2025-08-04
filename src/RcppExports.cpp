@@ -68,6 +68,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// phi_index_cpp
+NumericVector phi_index_cpp(NumericVector seq, int minScale, int maxScale, int maxOrder, List list_options);
+RcppExport SEXP _randMeasures_phi_index_cpp(SEXP seqSEXP, SEXP minScaleSEXP, SEXP maxScaleSEXP, SEXP maxOrderSEXP, SEXP list_optionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type minScale(minScaleSEXP);
+    Rcpp::traits::input_parameter< int >::type maxScale(maxScaleSEXP);
+    Rcpp::traits::input_parameter< int >::type maxOrder(maxOrderSEXP);
+    Rcpp::traits::input_parameter< List >::type list_options(list_optionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(phi_index_cpp(seq, minScale, maxScale, maxOrder, list_options));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_randMeasures_lz76_complexity", (DL_FUNC) &_randMeasures_lz76_complexity, 1},
@@ -75,6 +90,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randMeasures_SWLZ_lengths", (DL_FUNC) &_randMeasures_SWLZ_lengths, 1},
     {"_randMeasures_SWLZ_ER", (DL_FUNC) &_randMeasures_SWLZ_ER, 1},
     {"_randMeasures_block_entropy", (DL_FUNC) &_randMeasures_block_entropy, 2},
+    {"_randMeasures_phi_index_cpp", (DL_FUNC) &_randMeasures_phi_index_cpp, 5},
     {NULL, NULL, 0}
 };
 

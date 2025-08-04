@@ -40,3 +40,7 @@ block_entropy <- function(x, block_size = 1L) {
     .Call(`_randMeasures_block_entropy`, x, block_size)
 }
 
+phi_index_cpp <- function(seq, minScale, maxScale, maxOrder, list_options) {
+    .Call(`_randMeasures_phi_index_cpp`, seq, minScale, maxScale, maxOrder, list_options)
+}
+

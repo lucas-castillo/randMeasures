@@ -50,6 +50,7 @@ repetitions <- function(s, full=F){
   v <- s[2:length(s)] == s[1:(length(s) - 1)]
   if (full) return (c(NA, v)) else return (mean(v, na.rm=T))
 }
+
 response_frequencies <- function(s, a=NULL){
   a <- .manage_alternatives(a,s)
   n <- length(s)
@@ -63,6 +64,7 @@ coupon <- function(s,a=NULL){
   alternatives_found <- rep(0, length(a))
   accumulator <- c()
   for (i in 1:length(s)){
+
     alternatives_found[which(a == s[i])] <- alternatives_found[which(a == s[i])] + 1
     if (!any(alternatives_found == 0)){
       accumulator <- c(accumulator, sum(alternatives_found))
@@ -71,6 +73,7 @@ coupon <- function(s,a=NULL){
   }
   if (is.null(accumulator)){return(NA)}else{return(mean(accumulator))}
 }
+
 repetition_gap <- function(s, a=NULL, measure="median"){
   a <- .manage_alternatives(a,s)
   diffs <- c()
@@ -295,6 +298,35 @@ RNG2 <- function(s, a=NULL){
   bottom <- sum(row_sums * log10(row_sums), na.rm = T)
   top / bottom
 }
+
+#' Phi Index
+#'
+#' @param s Sequence vector.
+#' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#' @param maxOrder Optional. Highest phi index to calculate
+#'
+#' @return vector of phi indices from 2 to maxOrder.
+#' @export
+#'
+#' @examples
+#' phi_index(sample(1:20, 100, T))
+phi_index <- function(s, a=NULL, maxOrder=7){
+  a <- .manage_alternatives(a, s)
+  minScale <- min(a)
+  maxScale <- max(a)
+
+  seq.p <- s - minScale + 1
+  maxScale.p <- maxScale - minScale + 1
+  minScale.p <- 1
+  list_options <- lapply(2:maxOrder, \(A){DescTools::CombSet(c(0,1),A,repl=TRUE, ord = TRUE)})
+
+  phi <- phi_index_cpp(seq.p, minScale.p, maxScale.p, maxOrder, list_options)
+
+  names(phi) <- paste("Phi", 2:maxOrder, sep = "_")
+
+  return(phi)
+}
+
 
 #' Get all measures
 #'
