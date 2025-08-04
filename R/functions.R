@@ -321,7 +321,7 @@ phi_index <- function(s, a=NULL, maxOrder=7){
   list_options <- lapply(2:maxOrder, \(A){DescTools::CombSet(c(0,1),A,repl=TRUE, ord = TRUE)})
 
   phi <- phi_index_cpp(seq.p, minScale.p, maxScale.p, maxOrder, list_options)
-
+  phi[is.na(phi) | phi == 0] <- NA
   names(phi) <- paste("Phi", 2:maxOrder, sep = "_")
 
   return(phi)
