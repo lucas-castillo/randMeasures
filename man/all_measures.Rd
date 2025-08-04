@@ -4,12 +4,14 @@
 \alias{all_measures}
 \title{Get all measures}
 \usage{
-all_measures(s, a = NULL, drop.r = NULL)
+all_measures(s, a = NULL, drop.r = NULL, maxOrder = 7)
 }
 \arguments{
 \item{s}{Sequence vector.}
 
 \item{a}{Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).}
+
+\item{drop.r}{Optional. Whether to drop repetitions when calculating other measures}
 }
 \value{
 A dataframe with all measures in the package

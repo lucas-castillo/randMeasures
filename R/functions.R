@@ -332,15 +332,16 @@ phi_index <- function(s, a=NULL, maxOrder=7){
 #'
 #' @param s Sequence vector.
 #' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#' @param drop.r Optional. Whether to drop repetitions when calculating other measures
 #'
 #' @return A dataframe with all measures in the package
 #' @export
 #'
 #' @examples
 #' all_measures(sample(1:5, 100, T))
-all_measures <- function(s, a=NULL, drop.r=NULL){
+all_measures <- function(s, a=NULL, drop.r=NULL, maxOrder=7){
   if (is.null(drop.r)){
-    drop.r <- T
+    drop.r <- F
     message("Calculating Adj, TPs and distances")
   }
   a <- .manage_alternatives(a,s)
@@ -350,36 +351,41 @@ all_measures <- function(s, a=NULL, drop.r=NULL){
 
   fod <- fod(s, a)
 
+  phi <- phi_index(s, a, maxOrder)
 
 
-  data.frame(
-    redundancy = redundancy(s, a),
-    repetitions = repetitions(s),
-    adjacency=adjacency(s, drop.r = drop.r),
-    turning_points=turning_points(s, drop.r = drop.r),
-    distances=distances(s, drop.r = drop.r),
-    coupon = coupon(s, a),
-    repetition_gap_med =repetition_gap(s,a, "median"),
-    repetition_gap_mean= repetition_gap(s,a, "mean"),
-    RNG = RNG(s,a),
-    RNG2 = RNG2(s, a),
-    NSQ = NSQ(s,a),
-    cluster_ratio = cluster_ratio(s,a),
-    phase_length_1=if ("1" %in% names(phase_length)){phase_length["1"]}else{0},
-    phase_length_2=if ("2" %in% names(phase_length)){phase_length["2"]}else{0},
-    phase_length_3=if ("3" %in% names(phase_length)){phase_length["3"]}else{0},
-    phase_length_4=if ("4" %in% names(phase_length)){phase_length["4"]}else{0},
-    phase_length_5=if ("5" %in% names(phase_length)){phase_length["5"]}else{0},
-    fod_m5 = if (-5 %in% fod$difference) {fod$frequency[fod$difference == -5]}else{0},
-    fod_m4 = if (-4 %in% fod$difference) {fod$frequency[fod$difference == -4]}else{0},
-    fod_m3 = if (-3 %in% fod$difference) {fod$frequency[fod$difference == -3]}else{0},
-    fod_m2 = if (-2 %in% fod$difference) {fod$frequency[fod$difference == -2]}else{0},
-    fod_m1 = if (-1 %in% fod$difference) {fod$frequency[fod$difference == -1]}else{0},
-    fod_0  = if ( 0 %in% fod$difference) {fod$frequency[fod$difference ==  0]}else{0},
-    fod_p1 = if (+1 %in% fod$difference) {fod$frequency[fod$difference == +1]}else{0},
-    fod_p2 = if (+2 %in% fod$difference) {fod$frequency[fod$difference == +2]}else{0},
-    fod_p3 = if (+3 %in% fod$difference) {fod$frequency[fod$difference == +3]}else{0},
-    fod_p4 = if (+4 %in% fod$difference) {fod$frequency[fod$difference == +4]}else{0},
-    fod_p5 = if (+5 %in% fod$difference) {fod$frequency[fod$difference == +5]}else{0}
+  cbind(
+    data.frame(
+      redundancy = redundancy(s, a),
+      repetitions = repetitions(s),
+      adjacency=adjacency(s, drop.r = drop.r),
+      turning_points=turning_points(s, drop.r = drop.r),
+      distances=distances(s, drop.r = drop.r),
+      coupon = coupon(s, a),
+      repetition_gap_med =repetition_gap(s,a, "median"),
+      repetition_gap_mean= repetition_gap(s,a, "mean"),
+      RNG = RNG(s,a),
+      RNG2 = RNG2(s, a),
+      NSQ = NSQ(s,a),
+      cluster_ratio = cluster_ratio(s,a),
+      phase_length_1=if ("1" %in% names(phase_length)){phase_length["1"]}else{0},
+      phase_length_2=if ("2" %in% names(phase_length)){phase_length["2"]}else{0},
+      phase_length_3=if ("3" %in% names(phase_length)){phase_length["3"]}else{0},
+      phase_length_4=if ("4" %in% names(phase_length)){phase_length["4"]}else{0},
+      phase_length_5=if ("5" %in% names(phase_length)){phase_length["5"]}else{0},
+      fod_m5 = if (-5 %in% fod$difference) {fod$frequency[fod$difference == -5]}else{0},
+      fod_m4 = if (-4 %in% fod$difference) {fod$frequency[fod$difference == -4]}else{0},
+      fod_m3 = if (-3 %in% fod$difference) {fod$frequency[fod$difference == -3]}else{0},
+      fod_m2 = if (-2 %in% fod$difference) {fod$frequency[fod$difference == -2]}else{0},
+      fod_m1 = if (-1 %in% fod$difference) {fod$frequency[fod$difference == -1]}else{0},
+      fod_0  = if ( 0 %in% fod$difference) {fod$frequency[fod$difference ==  0]}else{0},
+      fod_p1 = if (+1 %in% fod$difference) {fod$frequency[fod$difference == +1]}else{0},
+      fod_p2 = if (+2 %in% fod$difference) {fod$frequency[fod$difference == +2]}else{0},
+      fod_p3 = if (+3 %in% fod$difference) {fod$frequency[fod$difference == +3]}else{0},
+      fod_p4 = if (+4 %in% fod$difference) {fod$frequency[fod$difference == +4]}else{0},
+      fod_p5 = if (+5 %in% fod$difference) {fod$frequency[fod$difference == +5]}else{0}
+    ),
+    data.frame(t(phi))
   )
+
 }
