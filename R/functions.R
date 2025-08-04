@@ -74,6 +74,20 @@ coupon <- function(s,a=NULL){
   if (is.null(accumulator)){return(NA)}else{return(mean(accumulator))}
 }
 
+#' Repetition Gap
+#'
+#' @param s Sequence vector.
+#' @param a Optional. Vector of alternatives (e.g. 1:6 in a mental dice task).
+#' @param measure String. Either 'median', 'mode' or 'mean'.
+#'
+#' @return Gap measure (either mode, median or mean, as specified by `measure`).
+#' @export
+#'
+#' @examples
+#' v <- sample(1:100, 100, T)
+#' repetition_gap(v, measure = "mean")
+#' repetition_gap(v, measure = "median")
+#' repetition_gap(v, measure = "mode")
 repetition_gap <- function(s, a=NULL, measure="median"){
   a <- .manage_alternatives(a,s)
   diffs <- c()
