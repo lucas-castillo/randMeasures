@@ -17,5 +17,5 @@ BugReports: https://github.com/lucas-castillo/randMeasures/issues
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp
+    Rcpp,
     DescTools
